@@ -1277,3 +1277,121 @@ https://templatemo.com/tm-595-3d-coverflow
                 border-radius: 25px;
             }
         }
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .logo-text {
+        font-size: 14px;
+        max-width: 160px;
+        white-space: normal;
+        line-height: 1.2;
+    }
+
+    .logo-container {
+        gap: 8px;
+        max-width: 75%;
+    }
+
+    .header {
+        padding: 0 12px;
+    }
+
+    .coverflow-wrapper {
+        padding-top: 70px;
+        overflow: hidden;
+    }
+
+    .coverflow-container {
+        overflow: hidden;
+    }
+
+    .coverflow {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .info {
+        width: calc(100% - 30px);
+        top: 95px;
+    }
+
+    .info h2 {
+        font-size: 22px;
+    }
+
+    .nav-button.prev {
+        left: 8px;
+    }
+
+    .nav-button.next {
+        right: 8px;
+    }
+
+    .about-content,
+    .contact-content {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .stats-section {
+        grid-template-columns: 1fr;
+        padding: 25px;
+    }
+
+    .stat-number {
+        font-size: 28px;
+    }
+
+    .about-header h2,
+    .contact-header h2 {
+        font-size: 28px;
+    }
+
+    .about-info h3 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        display: none;
+    }
+
+    .logo-container {
+        max-width: unset;
+    }
+
+    .coverflow-item {
+        width: 160px;
+        height: 160px;
+    }
+
+    .showcase-main {
+        width: 100%;
+        height: auto;
+        min-height: 320px;
+        padding: 20px;
+    }
+
+    .showcase-display {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .about-visual {
+        height: auto;
+        min-height: 320px;
+    }
+}
