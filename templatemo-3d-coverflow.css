@@ -1449,23 +1449,113 @@ img {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+    #home.section {
+        min-height: auto !important;
+        height: auto !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        padding-top: 80px !important;
+        padding-bottom: 40px !important;
+    }
+
+    .coverflow-wrapper {
+        height: auto !important;
+        min-height: auto !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        padding-top: 20px !important;
+    }
+
+    .coverflow-container {
+        height: auto !important;
+        min-height: auto !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        padding-top: 110px !important;
+        overflow: hidden !important;
+    }
 
     .info {
-        top: 65px;
+        top: 0 !important;
+        width: 100% !important;
+        padding: 0 16px !important;
+    }
+
+    .info h2 {
+        font-size: 20px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .info p {
+        font-size: 13px !important;
     }
 
     .coverflow {
-        height: 220px;
-        margin-top: -15px;
+        height: 220px !important;
+        margin-top: 0 !important;
     }
 
     .coverflow-item {
-        width: 150px;
-        height: 150px;
+        width: 170px !important;
+        height: 170px !important;
+    }
+
+    .nav-button {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    .nav-button.prev {
+        left: 6px !important;
+    }
+
+    .nav-button.next {
+        right: 6px !important;
     }
 
     .logo-text {
-        font-size: 12px;
+        display: block !important;
+        font-size: 12px !important;
+        max-width: 110px !important;
+        line-height: 1.1 !important;
+        white-space: normal !important;
+    }
+
+    .logo-container {
+        gap: 6px !important;
+        max-width: 70% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #home.section {
+        padding-top: 72px !important;
+    }
+
+    .coverflow-container {
+        padding-top: 95px !important;
+    }
+
+    .coverflow {
+        height: 190px !important;
+    }
+
+    .coverflow-item {
+        width: 150px !important;
+        height: 150px !important;
+    }
+
+    .logo-text {
+        font-size: 11px !important;
+        max-width: 95px !important;
+    }
+
+    .info h2 {
+        font-size: 18px !important;
+    }
+
+    .info p {
+        font-size: 12px !important;
     }
 }
