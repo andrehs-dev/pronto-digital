@@ -172,25 +172,35 @@ https://templatemo.com/tm-595-3d-coverflow
         }
 
         /* Home Section with Coverflow */
-        .coverflow-wrapper {
-            width: 100%;
+        /* Substitua o .coverflow-wrapper e .info existentes */
+.coverflow-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;      /* ← muda para coluna */
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+    gap: 20px;                   /* ← espaço entre título e carrossel */
+}
 
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: 80px;
-        }
+.info {
+    position: static;            /* ← sai do absolute */
+    transform: none;
+    text-align: center;
+    color: white;
+    z-index: 200;
+}
 
-        .coverflow-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            perspective: 1200px;
-            position: relative;
-        }
+.coverflow-container {
+    width: 100%;
+    flex: 1;                     /* ← ocupa o espaço restante */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+    position: relative;
+}
 
         .coverflow {
             display: flex;
@@ -1278,284 +1288,94 @@ https://templatemo.com/tm-595-3d-coverflow
             }
         }
 
+/* ===== CORREÇÕES MOBILE - Anti-zoom ===== */
+
+/* Garante que nada ultrapasse a largura da tela */
 html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
+/* Coverflow wrapper não deve ter altura fixa no mobile */
 @media (max-width: 768px) {
-    .logo-text {
-        font-size: 14px;
-        max-width: 160px;
-        white-space: normal;
-        line-height: 1.2;
-    }
-
-    .logo-container {
-        gap: 8px;
-        max-width: 75%;
-    }
-
-    .header {
-        padding: 0 12px;
-    }
-
     .coverflow-wrapper {
-        padding-top: 70px;
-        overflow: hidden;
+        flex-direction: column;
+        height: 100vh;
+        padding-top: 80px;
     }
 
-    .coverflow-container {
-        overflow: hidden;
-    }
-
+    /* O coverflow em si estava com largura absoluta implícita */
     .coverflow {
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
+        height: 300px;
     }
 
-    .info {
-        width: calc(100% - 30px);
-        top: 95px;
-    }
-
-    .info h2 {
-        font-size: 22px;
-    }
-
-    .nav-button.prev {
-        left: 8px;
-    }
-
-    .nav-button.next {
-        right: 8px;
-    }
-
-    .about-content,
-    .contact-content {
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
-    }
-
+    /* Stats com 4 colunas em tela pequena estoura a largura */
     .stats-section {
-        grid-template-columns: 1fr;
-        padding: 25px;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 30px 20px;
     }
 
+    /* Número grande demais para telas pequenas */
     .stat-number {
         font-size: 28px;
     }
 
-    .about-header h2,
-    .contact-header h2 {
-        font-size: 28px;
-    }
-
-    .about-info h3 {
-        font-size: 24px;
+    /* about-content sem padding mínimo pode estourar */
+    .about-content {
+        padding: 20px;
+        width: 100%;
     }
 }
 
 @media (max-width: 480px) {
-    .logo-text {
-        display: none;
-    }
-
-    .logo-container {
-        max-width: unset;
-    }
-
-    .coverflow-item {
-        width: 160px;
-        height: 160px;
-    }
-
+    /* showcase-main tem width: 350px fixo — isso estoura em telas < 380px */
     .showcase-main {
-        width: 100%;
+        width: 100% !important;
+        max-width: 100%;
         height: auto;
-        min-height: 320px;
-        padding: 20px;
+        min-height: 300px;
     }
 
     .showcase-display {
+        width: 100%;
         max-width: 100%;
         height: auto;
     }
 
     .about-visual {
         height: auto;
-        min-height: 320px;
-    }
-}
-
-@media (max-width: 768px) {
-
-    /* melhora posicionamento do header */
-    .header {
-        height: 65px;
-        padding: 0 14px;
+        width: 100%;
     }
 
-    .logo {
-        width: 38px;
-        height: 38px;
+    /* stat-number "sob/medida" e "até R$150" são textos longos */
+    .stat-number {
+        font-size: 22px;
+        word-break: break-word;
     }
 
-    .logo-text {
-        font-size: 13px;
-        max-width: 120px;
-    }
+    /* Botões de nav do coverflow muito próximos das bordas */
+    .nav-button.prev { left: 5px; }
+    .nav-button.next { right: 5px; }
 
-    /* sobe o titulo do serviço */
+    /* info pode vazar se o texto for longo */
     .info {
-        top: 70px;
+        width: 90%;
+        left: 5%;
+        transform: none;
     }
 
     .info h2 {
         font-size: 20px;
-        margin-bottom: 2px;
     }
+}
 
-    .info p {
-        font-size: 13px;
-        margin-bottom: 0;
-    }
-
-    /* aproxima o carrossel do titulo */
-    .coverflow-wrapper {
-        padding-top: 60px;
-    }
-
-    .coverflow {
-        height: 240px;
-        margin-top: -10px;
-    }
-
-    /* centraliza melhor as setas */
-    .nav-button.prev {
-        left: 5px;
-    }
-
-    .nav-button.next {
-        right: 5px;
-    }
+/* Correção distância título/imagem mobile */
+.coverflow-container {
+    margin-top: 0;
 }
 
 @media (max-width: 768px) {
-    #home.section {
-        min-height: auto !important;
-        height: auto !important;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        padding-top: 80px !important;
-        padding-bottom: 40px !important;
-    }
-
-    .coverflow-wrapper {
-        height: auto !important;
-        min-height: auto !important;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        padding-top: 20px !important;
-    }
-
     .coverflow-container {
-        height: auto !important;
-        min-height: auto !important;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        padding-top: 110px !important;
-        overflow: hidden !important;
-    }
-
-    .info {
-        top: 0 !important;
-        width: 100% !important;
-        padding: 0 16px !important;
-    }
-
-    .info h2 {
-        font-size: 20px !important;
-        margin-bottom: 4px !important;
-    }
-
-    .info p {
-        font-size: 13px !important;
-    }
-
-    .coverflow {
-        height: 220px !important;
-        margin-top: 0 !important;
-    }
-
-    .coverflow-item {
-        width: 170px !important;
-        height: 170px !important;
-    }
-
-    .nav-button {
-        width: 42px !important;
-        height: 42px !important;
-    }
-
-    .nav-button.prev {
-        left: 6px !important;
-    }
-
-    .nav-button.next {
-        right: 6px !important;
-    }
-
-    .logo-text {
-        display: block !important;
-        font-size: 12px !important;
-        max-width: 110px !important;
-        line-height: 1.1 !important;
-        white-space: normal !important;
-    }
-
-    .logo-container {
-        gap: 6px !important;
-        max-width: 70% !important;
-    }
-}
-
-@media (max-width: 480px) {
-    #home.section {
-        padding-top: 72px !important;
-    }
-
-    .coverflow-container {
-        padding-top: 95px !important;
-    }
-
-    .coverflow {
-        height: 190px !important;
-    }
-
-    .coverflow-item {
-        width: 150px !important;
-        height: 150px !important;
-    }
-
-    .logo-text {
-        font-size: 11px !important;
-        max-width: 95px !important;
-    }
-
-    .info h2 {
-        font-size: 18px !important;
-    }
-
-    .info p {
-        font-size: 12px !important;
+        margin-top: -300px;
     }
 }
