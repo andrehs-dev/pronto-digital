@@ -9,6 +9,194 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
+
+  <!-- Formulário Inicio -->
+  <div id="ae-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:9999; align-items:center; justify-content:center; padding:16px;">
+  <div id="ae-popup">
+
+    <!-- CABEÇALHO -->
+    <div class="ae-header">
+      <div class="ae-badge">⚡ Oferta exclusiva — só para quem está saindo</div>
+      <h2>Espera! Garanta <span>10% de desconto</span> no seu projeto</h2>
+      <p>Preencha em 2 minutos e te mando o cupom direto no WhatsApp.</p>
+      <button class="ae-close" onclick="aeClose()">✕</button>
+    </div>
+
+    <!-- FORMULÁRIO -->
+    <div class="ae-body" id="ae-form">
+
+      <div class="ae-2col">
+        <div class="ae-row">
+          <label>Nome *</label>
+          <input type="text" id="ae-nome" placeholder="Seu nome completo" />
+        </div>
+        <div class="ae-row">
+          <label>E-mail ou WhatsApp *</label>
+          <input type="text" id="ae-contato" placeholder="email ou (19) 99999-9999" />
+        </div>
+      </div>
+
+      <hr class="ae-divider">
+      <p class="ae-section">Sobre sua visita</p>
+
+      <div class="ae-row">
+        <label>Encontrou o que procurava no site?</label>
+        <div class="ae-radio-group">
+          <label class="ae-radio" id="ae-opt-sim" onclick="aeFound('sim')">
+            <input type="radio" name="ae_found" value="sim"> ✅ Sim, encontrei
+          </label>
+          <label class="ae-radio" id="ae-opt-nao" onclick="aeFound('nao')">
+            <input type="radio" name="ae_found" value="nao"> ❌ Não encontrei
+          </label>
+        </div>
+
+        <!-- SE SIM -->
+        <div class="ae-cond" id="ae-blk-sim">
+          <div class="ae-row" style="margin-bottom:10px;">
+            <label>Quer agendar uma reunião de orçamento?</label>
+            <div class="ae-radio-group">
+              <label class="ae-radio" id="ae-meet-sim" onclick="aeMeeting('sim')">
+                <input type="radio" name="ae_meeting" value="sim"> 📅 Sim, quero agendar
+              </label>
+              <label class="ae-radio" id="ae-meet-nao" onclick="aeMeeting('nao')">
+                <input type="radio" name="ae_meeting" value="nao"> Não por agora
+              </label>
+            </div>
+          </div>
+          <div id="ae-meet-fields" style="display:none;">
+            <div class="ae-row" style="margin-bottom:10px;">
+              <label>Nome do projeto</label>
+              <input type="text" placeholder="Ex: Site para minha barbearia" />
+            </div>
+            <div class="ae-row" style="margin-bottom:0;">
+              <label>Resumo do que precisa</label>
+              <textarea placeholder="Descreva brevemente o projeto..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- SE NÃO -->
+        <div class="ae-cond" id="ae-blk-nao">
+          <div class="ae-row" style="margin-bottom:10px;">
+            <label>O que você estava procurando?</label>
+            <textarea placeholder="Me conta o que precisava e não encontrou..."></textarea>
+          </div>
+          <div class="ae-row" style="margin-bottom:0;">
+            <label>Como posso te ajudar?</label>
+            <textarea placeholder="Qual seria a solução ideal para você?" style="min-height:56px;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <hr class="ae-divider">
+      <p class="ae-section">Sobre você e seu negócio</p>
+
+      <div class="ae-2col">
+        <div class="ae-row">
+          <label>Ramo de negócio *</label>
+          <select>
+            <option value="">Selecione...</option>
+            <option>Alimentação / Restaurante</option>
+            <option>Beleza e estética</option>
+            <option>Saúde e bem-estar</option>
+            <option>Varejo / E-commerce</option>
+            <option>Serviços profissionais</option>
+            <option>Educação</option>
+            <option>Construção / Reformas</option>
+            <option>Tecnologia</option>
+            <option>Autônomo / Freelancer</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="ae-row">
+          <label>Maior dificuldade hoje</label>
+          <select>
+            <option value="">Selecione...</option>
+            <option>Não tenho presença online</option>
+            <option>Preciso atrair mais clientes</option>
+            <option>Converter visitantes em vendas</option>
+            <option>Identidade visual fraca</option>
+            <option>Gerenciar redes sociais</option>
+            <option>Orçamento limitado</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="ae-2col">
+        <div class="ae-row">
+          <label>Orçamento estimado</label>
+          <select>
+            <option value="">Prefiro não informar</option>
+            <option>Até R$ 150</option>
+            <option>R$ 150 – R$ 500</option>
+            <option>R$ 500 – R$ 1.500</option>
+            <option>R$ 1.500 – R$ 5.000</option>
+            <option>Acima de R$ 5.000</option>
+          </select>
+        </div>
+        <div class="ae-row">
+          <label>Prazo desejado</label>
+          <select>
+            <option value="">Sem pressa</option>
+            <option>Urgente — em 24h</option>
+            <option>Essa semana</option>
+            <option>Esse mês</option>
+            <option>Sem data definida</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="ae-2col">
+        <div class="ae-row">
+          <label>Já teve site ou trabalhou com agência?</label>
+          <div class="ae-radio-group">
+            <label class="ae-radio" id="ae-exp-s" onclick="aeExp('s')">
+              <input type="radio" name="ae_exp" value="s"> Sim
+            </label>
+            <label class="ae-radio" id="ae-exp-n" onclick="aeExp('n')">
+              <input type="radio" name="ae_exp" value="n"> Não, primeira vez
+            </label>
+          </div>
+        </div>
+        <div class="ae-row">
+          <label>Como conheceu meu trabalho?</label>
+          <select>
+            <option value="">Selecione...</option>
+            <option>Instagram</option>
+            <option>Google</option>
+            <option>Indicação</option>
+            <option>LinkedIn</option>
+            <option>Pesquisando no Google</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="ae-lgpd">
+        <input type="checkbox" id="ae-lgpd">
+        <label for="ae-lgpd">Concordo em receber contato sobre meu projeto. Seus dados não serão compartilhados com terceiros. (LGPD)</label>
+      </div>
+
+      <button class="ae-submit" onclick="aeSubmit()">⚡ Quero meu desconto de 10%</button>
+      <p class="ae-skip" onclick="aeClose()">Não, obrigado — prefiro continuar sem o desconto</p>
+
+    </div>
+
+    <!-- MENSAGEM DE SUCESSO -->
+    <div class="ae-success" id="ae-success" style="display:none;">
+      <div class="ae-success-icon">✓</div>
+      <h3>Recebido! Falta só um passo</h3>
+      <p>Vou te mandar o cupom de 10% direto no WhatsApp.<br>Clique abaixo para já adiantar a conversa:</p>
+      <a class="ae-wa-btn" href="https://wa.me/5519993174538?text=Oi+André,+preenchi+o+formulário+do+site+e+quero+meu+desconto+de+10%25" target="_blank">
+        💬 Falar com André agora
+      </a>
+    </div>
+
+  </div>
+</div>
+<!-- Formulário Fim -->
+  
 <body>
 
 <!-- NAVBAR -->
