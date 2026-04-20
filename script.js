@@ -99,11 +99,39 @@ document.addEventListener('click', function(e) {
   };
 
   window.aeSubmit = function() {
-    var nome = document.getElementById('ae-nome').value.trim();
-    var contato = document.getElementById('ae-contato').value.trim();
-    if (!nome || !contato) {
-      alert('Por favor, preencha seu nome e contato.');
-      return;
+  var nome = document.getElementById('ae-nome').value.trim();
+  var contato = document.getElementById('ae-contato').value.trim();
+  if (!nome || !contato) {
+    alert('Por favor, preencha seu nome e contato.');
+    return;
+  }
+
+  // Coleta todos os dados do formulário
+  var dados = new FormData();
+  dados.append('Nome', nome);
+  dados.append('Contato', contato);
+  dados.append('Encontrou o que procurava', document.querySelector('input[name="ae_found"]:checked') ? document.querySelector('input[name="ae_found"]:checked').value : 'Não respondeu');
+  dados.append('Quer reunião', document.querySelector('input[name="ae_meeting"]:checked') ? document.querySelector('input[name="ae_meeting"]:checked').value : 'Não respondeu');
+  dados.append('Ramo de negócio', document.querySelectorAll('.ae-row select')[0].value);
+  dados.append('Maior dificuldade', document.querySelectorAll('.ae-row select')[1].value);
+  dados.append('Orçamento', document.querySelectorAll('.ae-row select')[2].value);
+  dados.append('Prazo', document.querySelectorAll('.ae-row select')[3].value);
+  dados.append('Experiência anterior', document.querySelector('input[name="ae_exp"]:checked') ? document.querySelector('input[name="ae_exp"]:checked').value : 'Não respondeu');
+  dados.append('Como conheceu', document.querySelectorAll('.ae-row select')[4].value);
+
+  // Envia para o Formspree
+  fetch('https://formspree.io/f/xlgoyzpz', { // <-- troque pelo seu endpoint
+    method: 'POST',
+    body: dados,
+    headers: { 'Accept': 'application/json' }
+  }).then(function() {
+    setCookie(COOKIE);
+    document.getElementById('ae-form').style.display = 'none';
+    document.getElementById('ae-success').style.display = 'block';
+  }).catch(function() {
+    alert('Erro ao enviar. Tente novamente.');
+  });
+};
     }
     setCookie(COOKIE); // salva cookie SÓ após envio — não aparece mais para este usuário
     document.getElementById('ae-form').style.display = 'none';
